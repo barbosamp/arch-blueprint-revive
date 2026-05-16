@@ -2,32 +2,47 @@ import { Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border py-12">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer className="bg-blackout border-t border-white/5 py-14">
+      <div className="px-6 max-w-5xl mx-auto">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
+          {/* Brand */}
           <div className="text-center md:text-left">
-            <span className="text-xl font-bold tracking-[0.3em] text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
-              LOTHUS
-            </span>
-            <p className="text-xs text-muted-foreground tracking-wider mt-1">
-              Arquitetura | Engenharia
+            <div className="font-display text-3xl text-white-belt tracking-wider leading-none">
+              BLACKBOX<span className="text-gold">.</span>
+            </div>
+            <p className="font-mono text-[8px] tracking-[0.35em] text-mid-gray uppercase mt-1.5">
+              JIU-JITSU
             </p>
           </div>
 
-          <div className="flex items-center gap-6">
-            <a
-              href="https://www.instagram.com/lothusengenharia/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-primary transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram size={20} />
-            </a>
+          {/* Belt bars visual */}
+          <div className="flex items-center gap-[5px]">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="w-[3px] h-5 bg-mid-gray/20" />
+            ))}
+            <div className="w-[12px] h-[12px] border border-mid-gray/20 ml-1.5" />
           </div>
 
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Lothus Engenharia. Todos os direitos reservados.
+          {/* Tagline */}
+          <p className="font-mono text-[9px] tracking-[0.3em] text-mid-gray/50 uppercase">
+            Disciplina * Processo * Transformação
+          </p>
+
+          {/* Social */}
+          <a
+            href="https://www.instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-mid-gray hover:text-gold transition-colors"
+            aria-label="Instagram"
+          >
+            <Instagram size={16} />
+          </a>
+        </div>
+
+        <div className="border-t border-white/5 pt-6 text-center">
+          <p className="font-mono text-[9px] tracking-widest text-mid-gray/25 uppercase">
+            © {new Date().getFullYear()} Blackbox Jiu-Jitsu. Todos os direitos reservados.
           </p>
         </div>
       </div>
