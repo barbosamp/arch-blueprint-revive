@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { label: 'A Blackbox', href: '#sobre' },
-  { label: 'Modalidades', href: '#modalidades' },
-  { label: 'Metodologia', href: '#metodologia' },
-  { label: 'Planos', href: '#planos' },
-  { label: 'Unidades', href: '#unidades' },
-  { label: 'Contato', href: '#contato' },
+  { label: 'A Blackbox', to: '/sobre' },
+  { label: 'Modalidades', to: '/modalidades' },
+  { label: 'Metodologia', to: '/metodologia' },
+  { label: 'Planos', to: '/planos' },
+  { label: 'Horários', to: '/horarios' },
+  { label: 'Unidades', to: '/unidades' },
+  { label: 'Contato', to: '/contato' },
 ];
 
 const Navbar = () => {
@@ -20,13 +22,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const handleClick = (href: string) => {
-    setIsOpen(false);
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
-  };
-
   return (
     <>
       <nav
@@ -37,34 +32,37 @@ const Navbar = () => {
         }`}
       >
         <div className="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
-          <button onClick={() => handleClick('#inicio')} className="flex flex-col items-start">
+          <Link to="/" className="flex flex-col items-start">
             <span className="font-display text-2xl text-white-belt leading-none tracking-wider">
               BLACKBOX<span className="text-gold">.</span>
             </span>
             <span className="font-mono text-[8px] tracking-[0.3em] text-mid-gray uppercase mt-0.5">
               JIU-JITSU
             </span>
-          </button>
+          </Link>
 
           <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleClick(link.href)}
-                className="font-mono text-[10px] tracking-[0.2em] text-mid-gray hover:text-gold transition-colors uppercase"
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `font-mono text-[10px] tracking-[0.2em] uppercase transition-colors ${
+                    isActive ? 'text-gold' : 'text-mid-gray hover:text-gold'
+                  }`
+                }
               >
                 {link.label}
-              </button>
+              </NavLink>
             ))}
           </div>
 
-          <a
-            href="#contato"
-            onClick={(e) => { e.preventDefault(); handleClick('#contato'); }}
+          <Link
+            to="/contato"
             className="hidden lg:inline-block bg-gold text-blackout font-display text-base tracking-widest uppercase px-5 py-2.5 hover:bg-gold/90 transition-colors"
           >
             Aula Grátis
-          </a>
+          </Link>
 
           <button
             onClick={() => setIsOpen(true)}
@@ -91,31 +89,34 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="flex-1 flex flex-col justify-center px-8 gap-8">
+        <div className="flex-1 flex flex-col justify-center px-8 gap-7">
           {navLinks.map((link, i) => (
-            <button
-              key={link.href}
-              onClick={() => handleClick(link.href)}
-              className="flex items-baseline gap-5 text-left group"
+            <NavLink
+              key={link.to}
+              to={link.to}
+              onClick={() => setIsOpen(false)}
+              className={({ isActive }) =>
+                `flex items-baseline gap-5 text-left group ${isActive ? 'text-gold' : ''}`
+              }
             >
               <span className="font-mono text-[9px] text-gold/40 tracking-widest w-6">
                 0{i + 1}
               </span>
-              <span className="font-display text-[clamp(28px,9vw,44px)] text-white-belt group-hover:text-gold transition-colors tracking-widest leading-none">
+              <span className="font-display text-[clamp(28px,9vw,44px)] tracking-widest leading-none group-hover:text-gold transition-colors text-inherit">
                 {link.label.toUpperCase()}
               </span>
-            </button>
+            </NavLink>
           ))}
         </div>
 
         <div className="px-8 py-8 border-t border-white/5 space-y-4">
-          <a
-            href="#contato"
-            onClick={(e) => { e.preventDefault(); handleClick('#contato'); }}
+          <Link
+            to="/contato"
+            onClick={() => setIsOpen(false)}
             className="block w-full bg-gold text-blackout font-display text-2xl tracking-widest text-center py-4 uppercase"
           >
             Aula Experimental Grátis
-          </a>
+          </Link>
           <p className="font-mono text-[9px] text-mid-gray tracking-[0.3em] uppercase text-center">
             3 Unidades · Cajamar · Santana de Parnaíba
           </p>

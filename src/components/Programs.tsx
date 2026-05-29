@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const programs = [
   {
     tag: 'Gi',
@@ -6,7 +8,6 @@ const programs = [
       'A base do Jiu-Jitsu Brasileiro. Treinamento com kimono para iniciantes e avançados — técnica, estratégia e evolução contínua.',
     features: ['A partir de 13 anos', 'Todos os níveis', 'Gi (kimono)'],
     featured: false,
-    color: 'text-white-belt',
   },
   {
     tag: 'No-Gi',
@@ -15,7 +16,6 @@ const programs = [
       'Jiu-Jitsu sem kimono — mais dinâmico e explosivo. Ideal para quem busca grappling completo, MMA e competição.',
     features: ['A partir de 13 anos', 'Shorts e rashguard', 'Grappling completo'],
     featured: true,
-    color: 'text-gold',
   },
   {
     tag: 'Feminino',
@@ -24,7 +24,6 @@ const programs = [
       'Ambiente seguro e acolhedor criado para a mulher. Defesa pessoal, condicionamento e empoderamento no tatame.',
     features: ['Exclusivo feminino', 'Todos os níveis', 'Autodefesa + técnica'],
     featured: false,
-    color: 'text-white-belt',
   },
   {
     tag: 'Infantil',
@@ -33,7 +32,6 @@ const programs = [
       'O tatame como sala de aula da vida. Disciplina, respeito e confiança desde cedo. Um espaço seguro para crescer.',
     features: ['6 a 12 anos', 'Turmas por faixa etária', 'Desenvolvimento integral'],
     featured: false,
-    color: 'text-gold',
   },
   {
     tag: 'Defesa',
@@ -42,17 +40,18 @@ const programs = [
       'Jiu-Jitsu não é sobre violência — é sobre proteção. Técnicas práticas para situações reais, sem pré-requisito.',
     features: ['Adultos e adolescentes', 'Sem pré-requisito', 'Aplicação real'],
     featured: false,
-    color: 'text-white-belt',
   },
 ];
 
+export { programs };
+
 const Programs = () => {
   return (
-    <section id="modalidades" className="py-24 md:py-40 bg-tatame">
+    <section className="py-24 md:py-40 bg-tatame">
       <div className="px-6 max-w-7xl mx-auto">
         <div className="mb-16">
           <span className="font-mono text-[10px] tracking-[0.35em] text-gold uppercase block mb-6">
-            02 — Modalidades
+            Modalidades
           </span>
           <h2
             className="font-display leading-none text-white-belt tracking-wider"
@@ -64,7 +63,6 @@ const Programs = () => {
           </h2>
         </div>
 
-        {/* Cards grid — 5 cards, 2 cols on md, last card centered */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/5">
           {programs.map((program) => (
             <div
@@ -109,16 +107,12 @@ const Programs = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <a
-            href="#contato"
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector('#contato')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+          <Link
+            to="/contato"
             className="inline-block bg-gold text-blackout font-display text-xl tracking-widest uppercase px-10 py-4 hover:bg-gold/90 transition-colors"
           >
             Agendar Aula Experimental
-          </a>
+          </Link>
         </div>
       </div>
     </section>
