@@ -42,14 +42,9 @@ const plans = [
   },
 ];
 
-const WHATSAPP = '5500000000000'; // ← Atualize com seu número real
+const MATRICULA_URL = 'https://app.basebjj.com.br/blackboxcajamar/matricula';
 
 const Plans = () => {
-  const handleWhatsApp = (planTitle: string) => {
-    const msg = `Olá! Tenho interesse no ${planTitle} da Blackbox. Gostaria de saber mais sobre valores e condições.`;
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
-  };
-
   return (
     <section id="planos" className="py-24 md:py-40 bg-tatame">
       <div className="px-6 max-w-6xl mx-auto">
@@ -117,16 +112,18 @@ const Plans = () => {
               </div>
 
               <div className="px-8 md:px-10 pb-8 md:pb-10">
-                <button
-                  onClick={() => handleWhatsApp(plan.title)}
-                  className={`w-full font-display text-lg tracking-widest uppercase py-4 transition-colors ${
+                <a
+                  href={MATRICULA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`block text-center w-full font-display text-lg tracking-widest uppercase py-4 transition-colors ${
                     plan.featured
                       ? 'bg-gold text-blackout hover:bg-gold/90'
                       : 'border border-gold/40 text-gold hover:bg-gold hover:text-blackout'
                   }`}
                 >
                   {plan.cta}
-                </button>
+                </a>
               </div>
             </div>
           ))}

@@ -1,4 +1,4 @@
-const WHATSAPP = '5500000000000'; // ← Atualize com seu número real
+const WHATSAPP = '5511977962165';
 
 const units = [
   {
@@ -31,8 +31,8 @@ const units = [
 ];
 
 const Units = () => {
-  const handleWhatsApp = (unitName: string) => {
-    const msg = `Olá! Tenho interesse em treinar na unidade ${unitName} da Blackbox. Gostaria de mais informações.`;
+  const handleWhatsApp = (_unitName: string) => {
+    const msg = 'Quero agendar minha aula experimental grátis.';
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 

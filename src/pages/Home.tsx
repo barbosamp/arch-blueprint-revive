@@ -4,7 +4,7 @@ import Hero from '@/components/Hero';
 import { programs } from '@/components/Programs';
 import { ArrowRight } from 'lucide-react';
 
-const WHATSAPP = '5500000000000'; // ← Atualize com seu número real
+const WHATSAPP = '5511977962165';
 
 const unitsList = [
   { name: 'PORTAIS', city: 'Cajamar, SP', tag: 'Matriz' },
@@ -122,7 +122,7 @@ export default function Home() {
               Agendar Agora
             </Link>
             <a
-              href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Olá! Quero agendar uma aula experimental na Blackbox.')}`}
+              href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Quero agendar minha aula experimental grátis.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-blackout text-blackout font-display text-xl tracking-widest uppercase px-8 py-4 hover:bg-blackout hover:text-gold transition-colors text-center"
