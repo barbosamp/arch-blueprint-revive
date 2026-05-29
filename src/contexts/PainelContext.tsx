@@ -1,129 +1,228 @@
-import { createContext, useContext, useState, useCallback } from 'react';
-import { useLocalStorage } from '@/hooks/useLocalStorage';
-import type {
-  Student, Plan, ClassSchedule, GraduationRule, Payment,
-} from '@/types/painel';
+import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { supabase, createIsolatedClient, isSupabaseConfigured } from '@/lib/supabase';
+import type { Profile, Plan, Schedule, GraduationRule, Payment, Attendance } from '@/lib/database.types';
+import type { Belt } from '@/types/painel';
 
-const DEFAULT_PASSWORD = 'blackbox2025';
+// ── Tipos locais (mantém compatibilidade com os componentes do painel) ──────
+export type { Profile as Student, Plan, Schedule as ClassSchedule, GraduationRule, Payment, Attendance };
+
+export type StudentInput = Omit<Profile, 'id' | 'created_at' | 'updated_at' | 'role'> & {
+  initialPassword: string;
+};
 
 interface PainelCtx {
-  isAuthenticated: boolean;
-  login: (pw: string) => boolean;
-  logout: () => void;
+  loading: boolean;
 
-  students: Student[];
-  addStudent: (s: Omit<Student, 'id'>) => void;
-  updateStudent: (s: Student) => void;
-  deleteStudent: (id: string) => void;
+  students: Profile[];
+  createStudent: (s: StudentInput) => Promise<{ error: string | null }>;
+  updateStudent: (s: Profile) => Promise<void>;
+  deleteStudent: (id: string) => Promise<void>;
 
   plans: Plan[];
-  addPlan: (p: Omit<Plan, 'id'>) => void;
-  updatePlan: (p: Plan) => void;
-  deletePlan: (id: string) => void;
+  addPlan: (p: Omit<Plan, 'id' | 'created_at'>) => Promise<void>;
+  updatePlan: (p: Plan) => Promise<void>;
+  deletePlan: (id: string) => Promise<void>;
 
-  schedules: ClassSchedule[];
-  addSchedule: (s: Omit<ClassSchedule, 'id'>) => void;
-  updateSchedule: (s: ClassSchedule) => void;
-  deleteSchedule: (id: string) => void;
+  schedules: Schedule[];
+  addSchedule: (s: Omit<Schedule, 'id' | 'created_at'>) => Promise<void>;
+  updateSchedule: (s: Schedule) => Promise<void>;
+  deleteSchedule: (id: string) => Promise<void>;
 
   rules: GraduationRule[];
-  addRule: (r: Omit<GraduationRule, 'id'>) => void;
-  updateRule: (r: GraduationRule) => void;
-  deleteRule: (id: string) => void;
+  addRule: (r: Omit<GraduationRule, 'id' | 'created_at'>) => Promise<void>;
+  updateRule: (r: GraduationRule) => Promise<void>;
+  deleteRule: (id: string) => Promise<void>;
 
   payments: Payment[];
-  addPayment: (p: Omit<Payment, 'id'>) => void;
-  updatePayment: (p: Payment) => void;
-  deletePayment: (id: string) => void;
-  markPaid: (id: string) => void;
+  addPayment: (p: Omit<Payment, 'id' | 'created_at'>) => Promise<void>;
+  updatePayment: (p: Payment) => Promise<void>;
+  deletePayment: (id: string) => Promise<void>;
+  markPaid: (id: string) => Promise<void>;
+
+  attendance: Attendance[];
+  logAttendance: (studentId: string, scheduleId?: string) => Promise<void>;
+  deleteAttendance: (id: string) => Promise<void>;
+
+  refresh: () => Promise<void>;
 }
 
 const Ctx = createContext<PainelCtx | null>(null);
 
-const uid = () => Math.random().toString(36).slice(2, 10);
-
 export function PainelProvider({ children }: { children: React.ReactNode }) {
-  const [auth, setAuth] = useState(() => !!sessionStorage.getItem('bb_auth'));
-  const [password] = useLocalStorage('bb_password', DEFAULT_PASSWORD);
+  const [loading, setLoading] = useState(true);
+  const [students, setStudents] = useState<Profile[]>([]);
+  const [plans, setPlans] = useState<Plan[]>([]);
+  const [schedules, setSchedules] = useState<Schedule[]>([]);
+  const [rules, setRules] = useState<GraduationRule[]>([]);
+  const [payments, setPayments] = useState<Payment[]>([]);
+  const [attendance, setAttendance] = useState<Attendance[]>([]);
 
-  const [students, setStudents] = useLocalStorage<Student[]>('bb_students', []);
-  const [plans, setPlans] = useLocalStorage<Plan[]>('bb_plans', [
-    { id: 'p1', name: 'Mensal', price: 150, frequency: 'mensal', description: 'Aulas ilimitadas', active: true },
-    { id: 'p2', name: 'Trimestral', price: 400, frequency: 'trimestral', description: '3 meses com desconto', active: true },
-  ]);
-  const [schedules, setSchedules] = useLocalStorage<ClassSchedule[]>('bb_schedules', [
-    { id: 's1', dayOfWeek: 1, time: '07:00', duration: 60, modality: 'bjj-adultos', instructor: 'Professor' },
-    { id: 's2', dayOfWeek: 3, time: '19:00', duration: 60, modality: 'bjj-kids', instructor: 'Professor' },
-  ]);
-  const [rules, setRules] = useLocalStorage<GraduationRule[]>('bb_rules', [
-    { id: 'r1', fromBelt: 'branca', toBelt: 'azul', minMonths: 12, minClasses: 100, requirements: 'Dominar posições básicas, raspagens e finalizações fundamentais', notes: '' },
-    { id: 'r2', fromBelt: 'azul', toBelt: 'roxa', minMonths: 24, minClasses: 200, requirements: 'Consistência técnica, competições, guardar e passar a guarda com eficiência', notes: '' },
-  ]);
-  const [payments, setPayments] = useLocalStorage<Payment[]>('bb_payments', []);
-
-  const login = useCallback((pw: string) => {
-    if (pw === password) {
-      sessionStorage.setItem('bb_auth', '1');
-      setAuth(true);
-      return true;
-    }
-    return false;
-  }, [password]);
-
-  const logout = useCallback(() => {
-    sessionStorage.removeItem('bb_auth');
-    setAuth(false);
+  const fetchAll = useCallback(async () => {
+    if (!isSupabaseConfigured) { setLoading(false); return; }
+    setLoading(true);
+    const [
+      { data: st }, { data: pl }, { data: sc },
+      { data: ru }, { data: pa }, { data: at },
+    ] = await Promise.all([
+      supabase.from('profiles').select('*').eq('role', 'aluno').order('name'),
+      supabase.from('plans').select('*').order('price'),
+      supabase.from('schedules').select('*').order('day_of_week').order('time'),
+      supabase.from('graduation_rules').select('*'),
+      supabase.from('payments').select('*').order('due_date', { ascending: false }),
+      supabase.from('attendance').select('*').order('date', { ascending: false }),
+    ]);
+    if (st) setStudents(st);
+    if (pl) setPlans(pl);
+    if (sc) setSchedules(sc);
+    if (ru) setRules(ru);
+    if (pa) setPayments(pa);
+    if (at) setAttendance(at);
+    setLoading(false);
   }, []);
 
-  const addStudent = (s: Omit<Student, 'id'>) =>
-    setStudents((prev) => [...prev, { ...s, id: uid() }]);
-  const updateStudent = (s: Student) =>
-    setStudents((prev) => prev.map((x) => (x.id === s.id ? s : x)));
-  const deleteStudent = (id: string) =>
-    setStudents((prev) => prev.filter((x) => x.id !== id));
+  useEffect(() => { fetchAll(); }, [fetchAll]);
 
-  const addPlan = (p: Omit<Plan, 'id'>) =>
-    setPlans((prev) => [...prev, { ...p, id: uid() }]);
-  const updatePlan = (p: Plan) =>
-    setPlans((prev) => prev.map((x) => (x.id === p.id ? p : x)));
-  const deletePlan = (id: string) =>
-    setPlans((prev) => prev.filter((x) => x.id !== id));
+  // ── Alunos ────────────────────────────────────────────────────
+  const createStudent = async (input: StudentInput) => {
+    const { initialPassword, ...profileData } = input;
 
-  const addSchedule = (s: Omit<ClassSchedule, 'id'>) =>
-    setSchedules((prev) => [...prev, { ...s, id: uid() }]);
-  const updateSchedule = (s: ClassSchedule) =>
-    setSchedules((prev) => prev.map((x) => (x.id === s.id ? s : x)));
-  const deleteSchedule = (id: string) =>
-    setSchedules((prev) => prev.filter((x) => x.id !== id));
+    // 1. Criar conta Supabase Auth isolada (não afeta sessão do professor)
+    const isolated = createIsolatedClient();
+    const { data: authData, error: authErr } = await isolated.auth.signUp({
+      email: profileData.email,
+      password: initialPassword,
+    });
+    if (authErr || !authData.user) {
+      return { error: authErr?.message ?? 'Erro ao criar conta do aluno' };
+    }
 
-  const addRule = (r: Omit<GraduationRule, 'id'>) =>
-    setRules((prev) => [...prev, { ...r, id: uid() }]);
-  const updateRule = (r: GraduationRule) =>
-    setRules((prev) => prev.map((x) => (x.id === r.id ? r : x)));
-  const deleteRule = (id: string) =>
-    setRules((prev) => prev.filter((x) => x.id !== id));
+    // 2. Inserir perfil vinculado ao auth user
+    const { error: profileErr } = await supabase.from('profiles').insert({
+      id: authData.user.id,
+      role: 'aluno',
+      ...profileData,
+    });
+    if (profileErr) return { error: profileErr.message };
 
-  const addPayment = (p: Omit<Payment, 'id'>) =>
-    setPayments((prev) => [...prev, { ...p, id: uid() }]);
-  const updatePayment = (p: Payment) =>
-    setPayments((prev) => prev.map((x) => (x.id === p.id ? p : x)));
-  const deletePayment = (id: string) =>
-    setPayments((prev) => prev.filter((x) => x.id !== id));
-  const markPaid = (id: string) =>
-    setPayments((prev) =>
-      prev.map((x) =>
-        x.id === id ? { ...x, status: 'pago', paidDate: new Date().toISOString().split('T')[0] } : x
-      )
+    setStudents((p) => [...p, { id: authData.user!.id, role: 'aluno', ...profileData, created_at: new Date().toISOString(), updated_at: new Date().toISOString() }]);
+    return { error: null };
+  };
+
+  const updateStudent = async (s: Profile) => {
+    const { id, created_at, updated_at, ...data } = s;
+    await supabase.from('profiles').update(data).eq('id', id);
+    setStudents((p) => p.map((x) => (x.id === id ? s : x)));
+  };
+
+  const deleteStudent = async (id: string) => {
+    await supabase.from('profiles').delete().eq('id', id);
+    setStudents((p) => p.filter((x) => x.id !== id));
+  };
+
+  // ── Planos ────────────────────────────────────────────────────
+  const addPlan = async (data: Omit<Plan, 'id' | 'created_at'>) => {
+    const { data: row } = await supabase.from('plans').insert(data).select().single();
+    if (row) setPlans((p) => [...p, row]);
+  };
+
+  const updatePlan = async (plan: Plan) => {
+    const { id, created_at, ...data } = plan;
+    await supabase.from('plans').update(data).eq('id', id);
+    setPlans((p) => p.map((x) => (x.id === id ? plan : x)));
+  };
+
+  const deletePlan = async (id: string) => {
+    await supabase.from('plans').delete().eq('id', id);
+    setPlans((p) => p.filter((x) => x.id !== id));
+  };
+
+  // ── Horários ──────────────────────────────────────────────────
+  const addSchedule = async (data: Omit<Schedule, 'id' | 'created_at'>) => {
+    const { data: row } = await supabase.from('schedules').insert(data).select().single();
+    if (row) setSchedules((p) => [...p, row]);
+  };
+
+  const updateSchedule = async (s: Schedule) => {
+    const { id, created_at, ...data } = s;
+    await supabase.from('schedules').update(data).eq('id', id);
+    setSchedules((p) => p.map((x) => (x.id === id ? s : x)));
+  };
+
+  const deleteSchedule = async (id: string) => {
+    await supabase.from('schedules').delete().eq('id', id);
+    setSchedules((p) => p.filter((x) => x.id !== id));
+  };
+
+  // ── Regras de Graduação ───────────────────────────────────────
+  const addRule = async (data: Omit<GraduationRule, 'id' | 'created_at'>) => {
+    const { data: row } = await supabase.from('graduation_rules').insert(data).select().single();
+    if (row) setRules((p) => [...p, row]);
+  };
+
+  const updateRule = async (r: GraduationRule) => {
+    const { id, created_at, ...data } = r;
+    await supabase.from('graduation_rules').update(data).eq('id', id);
+    setRules((p) => p.map((x) => (x.id === id ? r : x)));
+  };
+
+  const deleteRule = async (id: string) => {
+    await supabase.from('graduation_rules').delete().eq('id', id);
+    setRules((p) => p.filter((x) => x.id !== id));
+  };
+
+  // ── Pagamentos ────────────────────────────────────────────────
+  const addPayment = async (data: Omit<Payment, 'id' | 'created_at'>) => {
+    const { data: row } = await supabase.from('payments').insert(data).select().single();
+    if (row) setPayments((p) => [...p, row]);
+  };
+
+  const updatePayment = async (pay: Payment) => {
+    const { id, created_at, ...data } = pay;
+    await supabase.from('payments').update(data).eq('id', id);
+    setPayments((p) => p.map((x) => (x.id === id ? pay : x)));
+  };
+
+  const deletePayment = async (id: string) => {
+    await supabase.from('payments').delete().eq('id', id);
+    setPayments((p) => p.filter((x) => x.id !== id));
+  };
+
+  const markPaid = async (id: string) => {
+    const today = new Date().toISOString().split('T')[0];
+    await supabase.from('payments').update({ status: 'pago', paid_date: today }).eq('id', id);
+    setPayments((p) =>
+      p.map((x) => x.id === id ? { ...x, status: 'pago', paid_date: today } : x)
     );
+  };
+
+  // ── Presença ──────────────────────────────────────────────────
+  const logAttendance = async (studentId: string, scheduleId?: string) => {
+    const today = new Date().toISOString().split('T')[0];
+    const exists = attendance.some((a) => a.student_id === studentId && a.date === today);
+    if (exists) return;
+    const { data: row } = await supabase
+      .from('attendance')
+      .insert({ student_id: studentId, schedule_id: scheduleId ?? null, date: today })
+      .select()
+      .single();
+    if (row) setAttendance((p) => [row, ...p]);
+  };
+
+  const deleteAttendance = async (id: string) => {
+    await supabase.from('attendance').delete().eq('id', id);
+    setAttendance((p) => p.filter((x) => x.id !== id));
+  };
 
   return (
     <Ctx.Provider value={{
-      isAuthenticated: auth, login, logout,
-      students, addStudent, updateStudent, deleteStudent,
+      loading,
+      students, createStudent, updateStudent, deleteStudent,
       plans, addPlan, updatePlan, deletePlan,
       schedules, addSchedule, updateSchedule, deleteSchedule,
       rules, addRule, updateRule, deleteRule,
       payments, addPayment, updatePayment, deletePayment, markPaid,
+      attendance, logAttendance, deleteAttendance,
+      refresh: fetchAll,
     }}>
       {children}
     </Ctx.Provider>

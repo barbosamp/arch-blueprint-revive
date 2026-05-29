@@ -1,8 +1,9 @@
 import { Navigate } from 'react-router-dom';
-import { usePainel } from '@/contexts/PainelContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { isAuthenticated } = usePainel();
-  if (!isAuthenticated) return <Navigate to="/painel/login" replace />;
+  const { role, loading } = useAuth();
+  if (loading) return null;
+  if (role !== 'professor') return <Navigate to="/painel/login" replace />;
   return <>{children}</>;
 }
