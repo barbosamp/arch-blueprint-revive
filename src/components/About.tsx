@@ -9,13 +9,11 @@ const belts = [
 const About = () => {
   return (
     <section id="sobre" className="py-24 md:py-40 bg-blackout">
-      <div className="px-6 max-w-5xl mx-auto">
-        {/* Section tag */}
+      <div className="px-6 max-w-6xl mx-auto">
         <span className="font-mono text-[10px] tracking-[0.35em] text-gold uppercase block mb-12">
           01 — Quem Somos
         </span>
 
-        {/* Heading */}
         <h2
           className="font-display leading-none text-white-belt tracking-wider mb-10"
           style={{ fontSize: 'clamp(52px, 13vw, 104px)' }}
@@ -27,7 +25,6 @@ const About = () => {
 
         <div className="w-full h-px bg-white/8 mb-14" />
 
-        {/* Content grid */}
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 mb-20">
           <div className="space-y-6 text-mid-gray leading-relaxed text-sm font-light">
             <p>
@@ -37,20 +34,20 @@ const About = () => {
               mais forte.
             </p>
             <p>
-              A faixa branca representa o ponto de partida universal: todos chegamos
-              sem saber. A partir daí, cada aula, cada treino, cada graduação é uma
-              versão nova de si mesmo.
+              Com três unidades estratégicas em Cajamar e Santana de Parnaíba, levamos
+              a arte suave para perto de você. Adultos, crianças, mulheres — o tatame
+              é para todos.
             </p>
             <p>
               O tatame nos iguala. Não importa de onde você veio — o que importa é
-              onde você quer chegar.
+              onde você quer chegar. Desde a faixa branca até a faixa preta, cada
+              graduação é uma versão nova de si mesmo.
             </p>
           </div>
 
           <div className="space-y-10">
-            {/* Quote */}
             <blockquote className="border-l-2 border-gold pl-6">
-              <p className="font-display text-[clamp(24px,5vw,36px)] text-white-belt leading-tight tracking-wide mb-3">
+              <p className="font-display text-[clamp(22px,4.5vw,34px)] text-white-belt leading-tight tracking-wide mb-3">
                 "PRECISO ENTRAR NA MINHA CAIXA."
               </p>
               <cite className="font-mono text-[9px] tracking-[0.2em] text-mid-gray uppercase not-italic">
@@ -58,12 +55,11 @@ const About = () => {
               </cite>
             </blockquote>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-6 pt-8 border-t border-white/8">
               {[
-                { value: '+5', label: 'Anos' },
-                { value: '200+', label: 'Alunos' },
-                { value: '3', label: 'Modalidades' },
+                { value: '+5', label: 'Anos de história' },
+                { value: '3', label: 'Unidades' },
+                { value: '5', label: 'Modalidades' },
               ].map((stat) => (
                 <div key={stat.label}>
                   <span className="font-display text-4xl text-gold leading-none">{stat.value}</span>

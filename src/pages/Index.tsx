@@ -2,8 +2,10 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Programs from '@/components/Programs';
+import Methodology from '@/components/Methodology';
+import Plans from '@/components/Plans';
 import Schedule from '@/components/Schedule';
-import Values from '@/components/Values';
+import Units from '@/components/Units';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
@@ -15,8 +17,10 @@ const Index = () => {
       <Hero />
       <About />
       <Programs />
+      <Methodology />
+      <Plans />
       <Schedule />
-      <Values />
+      <Units />
       <Contact />
       <Footer />
       <WhatsAppButton />

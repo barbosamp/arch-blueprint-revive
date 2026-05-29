@@ -1,22 +1,46 @@
 import { useState } from 'react';
-import { MessageCircle, Instagram, MapPin } from 'lucide-react';
+import { MessageCircle, Instagram } from 'lucide-react';
+
+const WHATSAPP = '5500000000000'; // ← Atualize com seu número real
+
+const unitOptions = [
+  'Portais — Cajamar (Matriz)',
+  'Santana de Parnaíba',
+  'Cidade São Pedro — Cajamar',
+];
+
+const modalityOptions = [
+  'BJJ Adultos Gi',
+  'BJJ No-Gi',
+  'BJJ Feminino',
+  'BJJ Kids',
+  'Defesa Pessoal',
+  'Não sei ainda',
+];
 
 const Contact = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [unit, setUnit] = useState('');
+  const [modality, setModality] = useState('');
 
   const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    const msg = `Olá! Me chamo ${name}. Quero agendar uma aula experimental na Blackbox. Meu contato: ${phone}`;
-    window.open(`https://wa.me/5500000000000?text=${encodeURIComponent(msg)}`, '_blank');
+    const parts = [
+      `Olá! Me chamo *${name}*.`,
+      `Quero agendar uma *aula experimental* na Blackbox.`,
+      unit && `Unidade preferida: *${unit}*`,
+      modality && `Modalidade: *${modality}*`,
+      `Meu contato: ${phone}`,
+    ].filter(Boolean);
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(parts.join('\n'))}`, '_blank');
   };
 
   return (
     <section id="contato" className="py-24 md:py-40 bg-blackout">
-      <div className="px-6 max-w-5xl mx-auto">
-        {/* Section tag */}
+      <div className="px-6 max-w-6xl mx-auto">
         <span className="font-mono text-[10px] tracking-[0.35em] text-gold uppercase block mb-12">
-          05 — Entre na Caixa
+          07 — Entre na Caixa
         </span>
 
         <div className="grid md:grid-cols-2 gap-14 md:gap-24">
@@ -34,13 +58,13 @@ const Contact = () => {
             <div className="w-full h-px bg-white/8 mb-8" />
 
             <p className="text-mid-gray text-sm leading-relaxed font-light mb-10">
-              A primeira aula é experimental — venha conhecer o tatame. Sem compromisso,
-              sem equipamento. Só você e o processo.
+              A primeira aula é experimental e gratuita. Venha conhecer o tatame
+              sem compromisso, sem equipamento. Só você e o processo.
             </p>
 
-            <div className="space-y-5">
+            <div className="space-y-4 mb-10">
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/blackboxjiujitsu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-mid-gray hover:text-gold transition-colors group"
@@ -50,18 +74,28 @@ const Contact = () => {
                   @blackboxjiujitsu
                 </span>
               </a>
-              <div className="flex items-center gap-3 text-mid-gray">
-                <MapPin size={14} className="shrink-0" />
-                <span className="font-mono text-[10px] tracking-[0.25em] uppercase">
-                  Sua Cidade — Brasil
-                </span>
-              </div>
             </div>
 
-            {/* Quote */}
-            <div className="mt-12 border-l-2 border-gold/30 pl-6">
+            {/* Units quick list */}
+            <div className="space-y-4">
+              {[
+                { label: 'PORTAIS · MATRIZ', sub: 'Cajamar, SP' },
+                { label: 'SANTANA DE PARNAÍBA', sub: 'Santana de Parnaíba, SP' },
+                { label: 'CIDADE SÃO PEDRO', sub: 'Cajamar, SP' },
+              ].map((loc) => (
+                <div key={loc.label} className="flex items-center gap-3">
+                  <div className="w-[3px] h-4 bg-gold/40 shrink-0" />
+                  <div>
+                    <p className="font-mono text-[10px] tracking-[0.2em] text-white-belt uppercase">{loc.label}</p>
+                    <p className="font-mono text-[9px] text-mid-gray/50 uppercase">{loc.sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 border-l-2 border-gold/30 pl-6">
               <p className="font-mono text-[10px] tracking-[0.2em] text-mid-gray/50 italic">
-                "Defesa pessoal não é sobre violência. É sobre proteção."
+                "O Jiu-Jitsu não é sobre violência. É sobre proteção e transformação."
               </p>
             </div>
           </div>
@@ -90,7 +124,7 @@ const Contact = () => {
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                placeholder="(00) 00000-0000"
+                placeholder="(11) 00000-0000"
                 required
                 className="w-full bg-tatame border border-white/10 text-white-belt placeholder-mid-gray/30 px-4 py-3.5 font-mono text-sm focus:outline-none focus:border-gold/50 transition-colors"
               />
@@ -98,15 +132,33 @@ const Contact = () => {
 
             <div>
               <label className="font-mono text-[9px] tracking-[0.3em] text-gold uppercase block mb-2">
+                Unidade
+              </label>
+              <select
+                value={unit}
+                onChange={(e) => setUnit(e.target.value)}
+                className="w-full bg-tatame border border-white/10 text-mid-gray px-4 py-3.5 font-mono text-[11px] tracking-wider focus:outline-none focus:border-gold/50 transition-colors uppercase appearance-none"
+              >
+                <option value="">Selecione a unidade</option>
+                {unitOptions.map((u) => (
+                  <option key={u} value={u}>{u}</option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="font-mono text-[9px] tracking-[0.3em] text-gold uppercase block mb-2">
                 Modalidade de interesse
               </label>
               <select
+                value={modality}
+                onChange={(e) => setModality(e.target.value)}
                 className="w-full bg-tatame border border-white/10 text-mid-gray px-4 py-3.5 font-mono text-[11px] tracking-wider focus:outline-none focus:border-gold/50 transition-colors uppercase appearance-none"
               >
                 <option value="">Selecione uma modalidade</option>
-                <option value="bjj-adultos">BJJ Adultos</option>
-                <option value="bjj-kids">BJJ Kids</option>
-                <option value="defesa">Defesa Pessoal</option>
+                {modalityOptions.map((m) => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
               </select>
             </div>
 
