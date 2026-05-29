@@ -13,7 +13,17 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ["'Bebas Neue'", "sans-serif"],
+        mono: ["'Space Mono'", "monospace"],
+        sans: ["'DM Sans'", "sans-serif"],
+      },
       colors: {
+        blackout: "#0A0A0A",
+        gold: "#E8B84B",
+        "white-belt": "#F5F5F0",
+        tatame: "#1A1A1A",
+        "mid-gray": "#666666",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

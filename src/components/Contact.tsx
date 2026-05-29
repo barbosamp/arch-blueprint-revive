@@ -1,96 +1,126 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { MessageCircle, Instagram, MapPin } from 'lucide-react';
 
 const Contact = () => {
-  const { toast } = useToast();
-  const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleWhatsApp = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: 'Mensagem enviada!', description: 'Entraremos em contato em breve.' });
-    setForm({ name: '', email: '', phone: '', message: '' });
+    const msg = `Olá! Me chamo ${name}. Quero agendar uma aula experimental na Blackbox. Meu contato: ${phone}`;
+    window.open(`https://wa.me/5500000000000?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (
-    <section id="contato" className="py-20 md:py-32 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="text-primary text-sm tracking-[0.3em] uppercase mb-4 block">
-            Contato
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
-            Fale <span className="text-gradient">conosco</span>
-          </h2>
-        </div>
+    <section id="contato" className="py-24 md:py-40 bg-blackout">
+      <div className="px-6 max-w-5xl mx-auto">
+        {/* Section tag */}
+        <span className="font-mono text-[10px] tracking-[0.35em] text-gold uppercase block mb-12">
+          05 — Entre na Caixa
+        </span>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="space-y-8">
-            <p className="text-muted-foreground leading-relaxed">
-              Tem um projeto em mente? Entre em contato conosco e transforme suas
-              ideias em realidade. Estamos prontos para atendê-lo.
+        <div className="grid md:grid-cols-2 gap-14 md:gap-24">
+          {/* Left */}
+          <div>
+            <h2
+              className="font-display leading-none text-white-belt tracking-wider mb-10"
+              style={{ fontSize: 'clamp(52px, 12vw, 100px)' }}
+            >
+              AGENDE
+              <br />
+              SUA AULA
+            </h2>
+
+            <div className="w-full h-px bg-white/8 mb-8" />
+
+            <p className="text-mid-gray text-sm leading-relaxed font-light mb-10">
+              A primeira aula é experimental — venha conhecer o tatame. Sem compromisso,
+              sem equipamento. Só você e o processo.
             </p>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <MapPin className="text-primary mt-1 shrink-0" size={20} />
-                <div>
-                  <h4 className="text-foreground font-medium text-sm">Endereço</h4>
-                  <p className="text-muted-foreground text-sm">Brasília - DF, Brasil</p>
-                </div>
+
+            <div className="space-y-5">
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-mid-gray hover:text-gold transition-colors group"
+              >
+                <Instagram size={14} className="shrink-0" />
+                <span className="font-mono text-[10px] tracking-[0.25em] uppercase group-hover:text-gold transition-colors">
+                  @blackboxjiujitsu
+                </span>
+              </a>
+              <div className="flex items-center gap-3 text-mid-gray">
+                <MapPin size={14} className="shrink-0" />
+                <span className="font-mono text-[10px] tracking-[0.25em] uppercase">
+                  Sua Cidade — Brasil
+                </span>
               </div>
-              <div className="flex items-start gap-4">
-                <Phone className="text-primary mt-1 shrink-0" size={20} />
-                <div>
-                  <h4 className="text-foreground font-medium text-sm">Telefone</h4>
-                  <p className="text-muted-foreground text-sm">(61) 99999-9999</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Mail className="text-primary mt-1 shrink-0" size={20} />
-                <div>
-                  <h4 className="text-foreground font-medium text-sm">E-mail</h4>
-                  <p className="text-muted-foreground text-sm">contato@lothusengenharia.com.br</p>
-                </div>
-              </div>
+            </div>
+
+            {/* Quote */}
+            <div className="mt-12 border-l-2 border-gold/30 pl-6">
+              <p className="font-mono text-[10px] tracking-[0.2em] text-mid-gray/50 italic">
+                "Defesa pessoal não é sobre violência. É sobre proteção."
+              </p>
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <Input
-              placeholder="Nome completo"
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              required
-              className="bg-card border-border"
-            />
-            <Input
-              type="email"
-              placeholder="E-mail"
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              required
-              className="bg-card border-border"
-            />
-            <Input
-              placeholder="Telefone"
-              value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="bg-card border-border"
-            />
-            <Textarea
-              placeholder="Sua mensagem"
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              required
-              rows={5}
-              className="bg-card border-border"
-            />
-            <Button type="submit" className="w-full tracking-wider uppercase text-sm">
-              Enviar Mensagem
-            </Button>
+          {/* Right — form */}
+          <form onSubmit={handleWhatsApp} className="flex flex-col gap-5">
+            <div>
+              <label className="font-mono text-[9px] tracking-[0.3em] text-gold uppercase block mb-2">
+                Nome
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Seu nome completo"
+                required
+                className="w-full bg-tatame border border-white/10 text-white-belt placeholder-mid-gray/30 px-4 py-3.5 font-mono text-sm focus:outline-none focus:border-gold/50 transition-colors"
+              />
+            </div>
+
+            <div>
+              <label className="font-mono text-[9px] tracking-[0.3em] text-gold uppercase block mb-2">
+                Telefone / WhatsApp
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="(00) 00000-0000"
+                required
+                className="w-full bg-tatame border border-white/10 text-white-belt placeholder-mid-gray/30 px-4 py-3.5 font-mono text-sm focus:outline-none focus:border-gold/50 transition-colors"
+              />
+            </div>
+
+            <div>
+              <label className="font-mono text-[9px] tracking-[0.3em] text-gold uppercase block mb-2">
+                Modalidade de interesse
+              </label>
+              <select
+                className="w-full bg-tatame border border-white/10 text-mid-gray px-4 py-3.5 font-mono text-[11px] tracking-wider focus:outline-none focus:border-gold/50 transition-colors uppercase appearance-none"
+              >
+                <option value="">Selecione uma modalidade</option>
+                <option value="bjj-adultos">BJJ Adultos</option>
+                <option value="bjj-kids">BJJ Kids</option>
+                <option value="defesa">Defesa Pessoal</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              className="flex items-center justify-center gap-3 bg-gold text-blackout font-display text-2xl tracking-widest uppercase px-8 py-4 hover:bg-gold/90 transition-colors mt-2"
+            >
+              <MessageCircle size={18} />
+              Quero Começar
+            </button>
+
+            <p className="font-mono text-[9px] tracking-[0.2em] text-mid-gray/30 text-center uppercase">
+              Você será redirecionado para o WhatsApp
+            </p>
           </form>
         </div>
       </div>
