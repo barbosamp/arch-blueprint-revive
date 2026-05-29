@@ -116,7 +116,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link
-              to="/contato"
+              to="/agendar"
               className="bg-blackout text-gold font-display text-xl tracking-widest uppercase px-8 py-4 hover:bg-blackout/90 transition-colors text-center"
             >
               Agendar Agora

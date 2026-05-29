@@ -8,6 +8,7 @@ import PlanosPage from './pages/Planos';
 import HorariosPage from './pages/Horarios';
 import UnidadesPage from './pages/Unidades';
 import ContatoPage from './pages/Contato';
+import AgendarPage from './pages/Agendar';
 import NotFound from './pages/NotFound';
 
 const App = () => (
@@ -22,6 +23,7 @@ const App = () => (
       <Route path="/horarios" element={<HorariosPage />} />
       <Route path="/unidades" element={<UnidadesPage />} />
       <Route path="/contato" element={<ContatoPage />} />
+      <Route path="/agendar" element={<AgendarPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>

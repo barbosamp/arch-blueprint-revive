@@ -56,7 +56,7 @@ const Hero = () => {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            to="/contato"
+            to="/agendar"
             className="w-full sm:w-auto bg-gold text-blackout font-display text-2xl tracking-widest uppercase px-10 py-4 hover:bg-gold/90 transition-colors"
           >
             Aula Experimental Grátis

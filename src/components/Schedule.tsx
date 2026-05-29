@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const units = ['Portais — Matriz', 'Santana de Parnaíba', 'Cidade São Pedro'];
 
-const scheduleData: Record<string, { day: string; label: string; classes: { time: string; name: string; duration: string }[] }[]> = {
+export const scheduleData: Record<string, { day: string; label: string; classes: { time: string; name: string; duration: string }[] }[]> = {
   'Portais — Matriz': [
     {
       day: 'SEG', label: 'Segunda-Feira',

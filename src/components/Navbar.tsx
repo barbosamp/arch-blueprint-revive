@@ -58,7 +58,7 @@ const Navbar = () => {
           </div>
 
           <Link
-            to="/contato"
+            to="/agendar"
             className="hidden lg:inline-block bg-gold text-blackout font-display text-base tracking-widest uppercase px-5 py-2.5 hover:bg-gold/90 transition-colors"
           >
             Aula Grátis
@@ -111,7 +111,7 @@ const Navbar = () => {
 
         <div className="px-8 py-8 border-t border-white/5 space-y-4">
           <Link
-            to="/contato"
+            to="/agendar"
             onClick={() => setIsOpen(false)}
             className="block w-full bg-gold text-blackout font-display text-2xl tracking-widest text-center py-4 uppercase"
           >

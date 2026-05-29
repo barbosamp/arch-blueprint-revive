@@ -54,7 +54,7 @@ export default function HorariosPage() {
             ESCOLHA SEU HORÁRIO.
           </p>
           <Link
-            to="/contato"
+            to="/agendar"
             className="bg-gold text-blackout font-display text-xl tracking-widest uppercase px-10 py-4 hover:bg-gold/90 transition-colors whitespace-nowrap"
           >
             Agendar Aula
