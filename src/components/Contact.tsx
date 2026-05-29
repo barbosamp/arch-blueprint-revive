@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MessageCircle, Instagram } from 'lucide-react';
 
-const WHATSAPP = '5500000000000'; // ← Atualize com seu número real
+const WHATSAPP = '5511977962165';
 
 const unitOptions = [
   'Portais — Cajamar (Matriz)',

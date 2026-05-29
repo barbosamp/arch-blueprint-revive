@@ -1,26 +1,39 @@
+import { Link } from 'react-router-dom';
 import { Instagram } from 'lucide-react';
+
+const footerLinks = [
+  { label: 'A Blackbox', to: '/sobre' },
+  { label: 'Modalidades', to: '/modalidades' },
+  { label: 'Metodologia', to: '/metodologia' },
+  { label: 'Planos', to: '/planos' },
+  { label: 'Horários', to: '/horarios' },
+  { label: 'Unidades', to: '/unidades' },
+  { label: 'Contato', to: '/contato' },
+];
 
 const Footer = () => {
   return (
     <footer className="bg-blackout border-t border-white/5 py-14">
-      <div className="px-6 max-w-6xl mx-auto">
+      <div className="px-6 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="font-display text-3xl text-white-belt tracking-wider leading-none mb-1.5">
-              BLACKBOX<span className="text-gold">.</span>
-            </div>
-            <p className="font-mono text-[8px] tracking-[0.35em] text-mid-gray uppercase mb-4">
-              JIU-JITSU
-            </p>
-            <p className="font-mono text-[9px] tracking-[0.2em] text-mid-gray/50 uppercase leading-relaxed">
+            <Link to="/" className="block">
+              <div className="font-display text-3xl text-white-belt tracking-wider leading-none mb-1.5">
+                BLACKBOX<span className="text-gold">.</span>
+              </div>
+              <p className="font-mono text-[8px] tracking-[0.35em] text-mid-gray uppercase mb-4">
+                JIU-JITSU
+              </p>
+            </Link>
+            <p className="font-mono text-[9px] tracking-[0.2em] text-mid-gray/50 uppercase leading-relaxed mb-5">
               Disciplina · Processo · Transformação
             </p>
             <a
               href="https://www.instagram.com/blackboxjiujitsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-mid-gray/50 hover:text-gold transition-colors mt-5"
+              className="inline-flex items-center gap-2 text-mid-gray/50 hover:text-gold transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={15} />
@@ -35,32 +48,32 @@ const Footer = () => {
               { title: 'SANTANA DE PARNAÍBA', sub: 'Santana de Parnaíba, SP', tag: null },
               { title: 'CIDADE SÃO PEDRO', sub: 'Cajamar, SP', tag: null },
             ].map((unit) => (
-              <div key={unit.title}>
+              <Link key={unit.title} to="/unidades" className="group">
                 {unit.tag && (
                   <span className="font-mono text-[7px] tracking-[0.3em] bg-gold/15 text-gold uppercase px-2 py-0.5 mb-2 inline-block">
                     {unit.tag}
                   </span>
                 )}
-                <p className="font-mono text-[10px] tracking-[0.15em] text-white-belt uppercase leading-snug">
+                <p className="font-mono text-[10px] tracking-[0.15em] text-white-belt group-hover:text-gold uppercase leading-snug transition-colors">
                   {unit.title}
                 </p>
                 <p className="font-mono text-[9px] text-mid-gray/50 uppercase mt-1">{unit.sub}</p>
-              </div>
+              </Link>
             ))}
           </div>
 
-          {/* Links */}
+          {/* Nav links */}
           <div>
             <p className="font-mono text-[9px] tracking-[0.3em] text-gold uppercase mb-4">Navegação</p>
             <ul className="space-y-2.5">
-              {['#sobre', '#modalidades', '#metodologia', '#planos', '#horarios', '#unidades', '#contato'].map((href) => (
-                <li key={href}>
-                  <button
-                    onClick={() => document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })}
+              {footerLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
                     className="font-mono text-[9px] tracking-[0.2em] text-mid-gray/50 hover:text-gold transition-colors uppercase"
                   >
-                    {href.replace('#', '')}
-                  </button>
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
