@@ -158,17 +158,14 @@ export default function Seminario() {
               </div>
             </div>
 
-            {/* Foto placeholder */}
+            {/* Foto */}
             <div className="relative">
-              <div className="aspect-[3/4] bg-blackout border border-white/5 flex flex-col items-center justify-center gap-4">
-                <div className="w-16 h-16 border border-gold/20 flex items-center justify-center">
-                  <span className="font-display text-4xl text-gold/20">TD</span>
-                </div>
-                <p className="font-mono text-[8px] tracking-[0.3em] text-mid-gray/30 uppercase text-center px-8">
-                  {/* substituir por foto do Tainan Dalpra */}
-                  Foto do atleta
-                </p>
-              </div>
+              <img
+                src="https://d2779tscntxxsw.cloudfront.net/5b10e3a9aa599.png"
+                alt="Tainan Dalpra"
+                className="w-full aspect-[3/4] object-cover object-top"
+                loading="lazy"
+              />
               <div className="absolute -bottom-3 -right-3 w-24 h-24 border border-gold/10" />
               <div className="absolute -top-3 -left-3 w-16 h-16 border border-gold/10" />
             </div>
