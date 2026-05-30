@@ -161,7 +161,7 @@ export default function Seminario() {
             {/* Foto */}
             <div className="relative">
               <img
-                src="https://d2779tscntxxsw.cloudfront.net/5b10e3a9aa599.png"
+                src="/tainan-dalpra.jpg"
                 alt="Tainan Dalpra"
                 className="w-full aspect-[3/4] object-cover object-top"
                 loading="lazy"
