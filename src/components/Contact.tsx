@@ -64,7 +64,7 @@ const Contact = () => {
 
             <div className="space-y-4 mb-10">
               <a
-                href="https://www.instagram.com/blackboxjiujitsu"
+                href="https://www.instagram.com/blackboxcajamar"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-mid-gray hover:text-gold transition-colors group"
