@@ -6,7 +6,7 @@ const WA_GROUP = import.meta.env.VITE_SEMINAR_WA_GROUP as string | undefined;
 
 export default function SeminarioConfirmado() {
   return (
-    <Layout>
+    <Layout hideNav>
       <section className="py-24 md:py-40 bg-blackout min-h-screen">
         <div className="px-6 max-w-2xl mx-auto text-center">
 
