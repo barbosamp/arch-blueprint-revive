@@ -135,18 +135,19 @@ export default function Seminario() {
               </h2>
 
               <p className="text-mid-gray text-sm leading-relaxed font-light mb-6">
-                Considerado um dos melhores competidores do mundo, Tainan Dalpra é faixa preta pela Atos Jiu-Jitsu sob a orientação de André Galvão. Atleta de nível mundial com títulos expressivos no Gi e No-Gi, reconhecido pela criatividade e profundidade técnica do seu jogo.
+                Um dos atletas mais dominantes da era moderna do Jiu-Jitsu. Formado pela AOJ e orientado pelos lendários irmãos Mendes, Tainan Dalpra construiu uma carreira marcada por performances agressivas, técnica refinada e conquistas nas maiores competições do planeta.
               </p>
               <p className="text-mid-gray text-sm leading-relaxed font-light mb-10">
-                Seu Jiu-Jitsu é marcado pelo domínio do berimbolo, jogo de pernas avançado e leg locks — um estilo ofensivo e altamente técnico que representa a evolução do esporte no cenário mundial.
+                Reconhecido mundialmente por seu sistema de passagem de guarda, pressão constante e inteligência tática, tornou-se referência para uma nova geração de competidores. Com títulos mundiais, pan-americanos, europeus e brasileiros em seu currículo, Tainan representa a combinação entre disciplina, inovação e alto rendimento que define o Jiu-Jitsu de elite.
               </p>
 
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  'Campeão Mundial IBJJF',
-                  'Campeão ADCC',
-                  'No-Gi World Champion',
-                  'Atos Jiu-Jitsu',
+                  'Bicampeão Mundial IBJJF',
+                  'Campeão Pan-Americano IBJJF',
+                  'Campeão Europeu IBJJF',
+                  'Campeão Brasileiro IBJJF',
+                  'AOJ | Art of Jiu-Jitsu',
                 ].map((title) => (
                   <div key={title} className="flex items-center gap-2.5">
                     <span className="w-1 h-1 bg-gold shrink-0" />
