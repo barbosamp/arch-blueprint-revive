@@ -44,7 +44,7 @@ export default function Seminario() {
   };
 
   return (
-    <Layout>
+    <Layout hideNav>
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center bg-blackout overflow-hidden px-6">
         <div
