@@ -32,13 +32,8 @@ const Navbar = () => {
         }`}
       >
         <div className="px-6 py-4 flex items-center justify-between max-w-7xl mx-auto">
-          <Link to="/" className="flex flex-col items-start">
-            <span className="font-display text-2xl text-white-belt leading-none tracking-wider">
-              BLACKBOX<span className="text-gold">.</span>
-            </span>
-            <span className="font-mono text-[8px] tracking-[0.3em] text-mid-gray uppercase mt-0.5">
-              JIU-JITSU
-            </span>
+          <Link to="/" className="flex items-center">
+            <img src="/logo.png" alt="BLACKBOX. JIU-JITSU ACADEMY" className="h-9 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-7">
@@ -81,9 +76,7 @@ const Navbar = () => {
         }`}
       >
         <div className="px-6 py-4 flex items-center justify-between border-b border-white/5">
-          <span className="font-display text-2xl text-white-belt tracking-wider">
-            BLACKBOX<span className="text-gold">.</span>
-          </span>
+          <img src="/logo.png" alt="BLACKBOX. JIU-JITSU ACADEMY" className="h-9 w-auto" />
           <button onClick={() => setIsOpen(false)} className="text-white-belt p-2" aria-label="Fechar menu">
             <X size={22} />
           </button>
