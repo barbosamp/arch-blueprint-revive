@@ -71,7 +71,7 @@ const Contact = () => {
               >
                 <Instagram size={14} className="shrink-0" />
                 <span className="font-mono text-[10px] tracking-[0.25em] uppercase group-hover:text-gold transition-colors">
-                  @blackboxjiujitsu
+                  @blackboxcajamar
                 </span>
               </a>
             </div>
