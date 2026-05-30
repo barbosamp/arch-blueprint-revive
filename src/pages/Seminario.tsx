@@ -63,7 +63,7 @@ export default function Seminario() {
             </span>
             <span className="w-1 h-1 bg-gold/40 rounded-full" />
             <span className="font-mono text-[9px] tracking-[0.4em] text-gold/60 uppercase">
-              14 Jun 2025
+              14 Jun 2026
             </span>
           </div>
 
@@ -194,7 +194,7 @@ export default function Seminario() {
             {[
               { icon: Calendar, label: 'Data', value: '14 de Junho', sub: '2025' },
               { icon: Clock, label: 'Horário', value: '18h–20h', sub: 'chegue às 17h45' },
-              { icon: MapPin, label: 'Local', value: 'Portais', sub: 'Cajamar, SP — Matriz' },
+              { icon: MapPin, label: 'Local', value: 'Cajamar - Matriz Blackbox.', sub: 'Rua Waldemar Meira, 665 - Portal dos ipes' },
               { icon: Users, label: 'Investimento', value: 'R$259', sub: 'por participante' },
             ].map(({ icon: Icon, label, value, sub }) => (
               <div key={label} className="bg-blackout px-6 py-8 flex flex-col gap-2">
