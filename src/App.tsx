@@ -11,6 +11,8 @@ import ContatoPage from './pages/Contato';
 import AgendarPage from './pages/Agendar';
 import MatriculaPage from './pages/Matricula';
 import MatriculaConfirmado from './pages/MatriculaConfirmado';
+import SeminarioPage from './pages/Seminario';
+import SeminarioConfirmado from './pages/SeminarioConfirmado';
 import NotFound from './pages/NotFound';
 
 const App = () => (
@@ -28,6 +30,8 @@ const App = () => (
       <Route path="/agendar" element={<AgendarPage />} />
       <Route path="/matricula" element={<MatriculaPage />} />
       <Route path="/matricula/confirmado" element={<MatriculaConfirmado />} />
+      <Route path="/seminario" element={<SeminarioPage />} />
+      <Route path="/seminario/confirmado" element={<SeminarioConfirmado />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>
