@@ -30,7 +30,7 @@ const Footer = () => {
               Disciplina · Processo · Transformação
             </p>
             <a
-              href="https://www.instagram.com/blackboxjiujitsu"
+              href="https://www.instagram.com/blackboxcajamar"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-mid-gray/50 hover:text-gold transition-colors"
