@@ -81,7 +81,7 @@ export default function Seminario() {
           </h1>
 
           <p className="font-mono text-[11px] sm:text-[13px] tracking-[0.3em] text-mid-gray uppercase mb-12">
-            Seminário · 14 de Junho · 13h00 · Portais, Cajamar
+            Seminário · 14 de Junho · 18h00 às 20h00 · Portais, Cajamar
           </p>
 
           <div className="inline-flex items-center gap-2 border border-gold/30 bg-gold/5 px-5 py-2.5 mb-14">
@@ -192,9 +192,9 @@ export default function Seminario() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 mb-16">
             {[
               { icon: Calendar, label: 'Data', value: '14 de Junho', sub: '2025' },
-              { icon: Clock, label: 'Horário', value: '13h00', sub: 'chegue 15 min antes' },
+              { icon: Clock, label: 'Horário', value: '18h–20h', sub: 'chegue às 17h45' },
               { icon: MapPin, label: 'Local', value: 'Portais', sub: 'Cajamar, SP — Matriz' },
-              { icon: Users, label: 'Investimento', value: 'R$250', sub: 'por participante' },
+              { icon: Users, label: 'Investimento', value: 'R$259', sub: 'por participante' },
             ].map(({ icon: Icon, label, value, sub }) => (
               <div key={label} className="bg-blackout px-6 py-8 flex flex-col gap-2">
                 <Icon size={16} className="text-gold/60" strokeWidth={1.5} />
@@ -207,45 +207,24 @@ export default function Seminario() {
             ))}
           </div>
 
-          {/* O que esperar */}
-          <div className="grid md:grid-cols-2 gap-10">
-            <div>
-              <p className="font-mono text-[9px] tracking-[0.35em] text-gold/60 uppercase mb-5">
-                O que esperar
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Técnicas exclusivas do jogo de Tainan Dalpra',
-                  'Berimbolo e variações de inversão',
-                  'Leg locks e sistemas de finalização',
-                  'Perguntas e respostas ao final',
-                  'Treino supervisionado com o atleta',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="w-[3px] h-4 bg-gold/40 shrink-0 mt-0.5" />
-                    <span className="font-mono text-[10px] tracking-wider text-mid-gray uppercase">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p className="font-mono text-[9px] tracking-[0.35em] text-gold/60 uppercase mb-5">
-                Para quem é
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Todos os níveis — iniciante ao avançado',
-                  'Gi e No-Gi são bem-vindos',
-                  'Alunos Blackbox e de outras academias',
-                  'Atletas e praticantes recreativos',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="w-[3px] h-4 bg-gold/40 shrink-0 mt-0.5" />
-                    <span className="font-mono text-[10px] tracking-wider text-mid-gray uppercase">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div>
+            <p className="font-mono text-[9px] tracking-[0.35em] text-gold/60 uppercase mb-5">
+              Para quem é
+            </p>
+            <ul className="space-y-4">
+              {[
+                'Todos os níveis — iniciante ao avançado',
+                'Gi e No-Gi são bem-vindos',
+                'Alunos Blackbox e de outras academias',
+                'Atletas e praticantes recreativos',
+                '30 a 40 minutos para perguntas e fotos',
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="w-[3px] h-4 bg-gold/40 shrink-0 mt-0.5" />
+                  <span className="font-mono text-[10px] tracking-wider text-mid-gray uppercase">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -266,7 +245,7 @@ export default function Seminario() {
               SUA VAGA
             </h2>
             <p className="font-mono text-[10px] tracking-[0.2em] text-mid-gray/50 uppercase">
-              Vagas limitadas · 14 Jun · R$250,00
+              Vagas limitadas · 14 Jun · R$259,00 · 18h00 às 20h00
             </p>
           </div>
 
@@ -331,7 +310,7 @@ export default function Seminario() {
                   Aguarde…
                 </>
               ) : (
-                'Garantir Minha Vaga — R$250'
+                'Garantir Minha Vaga — R$259'
               )}
             </button>
 
