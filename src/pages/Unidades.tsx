@@ -1,5 +1,4 @@
 import Layout from '@/components/Layout';
-import Units from '@/components/Units';
 
 export default function UnidadesPage() {
   return (
@@ -9,8 +8,6 @@ export default function UnidadesPage() {
           Nossas localidades
         </span>
       </div>
-
-      <Units />
 
       {/* Unit details */}
       <section className="py-20 md:py-32 bg-blackout">
