@@ -14,14 +14,15 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["'Bebas Neue'", "sans-serif"],
-        mono: ["'Space Mono'", "monospace"],
+        display: ["'Oceanwide'", "'Bebas Neue'", "sans-serif"],
+        mono: ["'DM Sans'", "sans-serif"],
         sans: ["'DM Sans'", "sans-serif"],
       },
       colors: {
-        blackout: "#0A0A0A",
-        gold: "#E8B84B",
-        "white-belt": "#F5F5F0",
+        blackout: "#000000",
+        gold: "#E6BB55",
+        "white-belt": "#FFFFFF",
+        "intense-red": "#76210A",
         tatame: "#1A1A1A",
         "mid-gray": "#666666",
         border: "hsl(var(--border))",

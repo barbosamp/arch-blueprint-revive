@@ -1,4 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap');
+/* Oceanwide — fonte display oficial. Carregada via @font-face abaixo quando os arquivos estiverem em public/fonts/ */
+@font-face {
+  font-family: 'Oceanwide';
+  src: url('/fonts/Oceanwide-Regular.woff2') format('woff2'),
+       url('/fonts/Oceanwide-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap');
 
 @tailwind base;
 @tailwind components;
