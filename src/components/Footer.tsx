@@ -30,35 +30,43 @@ const Footer = () => {
               Disciplina · Processo · Transformação
             </p>
             <a
-              href="https://www.instagram.com/blackboxjiujitsu"
+              href="https://www.instagram.com/blackboxbjj/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-mid-gray/50 hover:text-gold transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={15} />
-              <span className="font-mono text-[9px] tracking-widest uppercase">@blackboxjiujitsu</span>
+              <span className="font-mono text-[9px] tracking-widest uppercase">@blackboxbjj</span>
             </a>
           </div>
 
           {/* Unidades */}
           <div className="md:col-span-2 grid sm:grid-cols-3 gap-8">
             {[
-              { title: 'PORTAIS', sub: 'Matriz · Cajamar, SP', tag: 'Matriz' },
-              { title: 'SANTANA DE PARNAÍBA', sub: 'Santana de Parnaíba, SP', tag: null },
-              { title: 'CIDADE SÃO PEDRO', sub: 'Cajamar, SP', tag: null },
+              { title: 'PORTAIS', sub: 'Matriz · Cajamar, SP', tag: 'Matriz', ig: '@blackboxcajamar', igUrl: 'https://www.instagram.com/blackboxcajamar/' },
+              { title: 'PARQUE SANTANA', sub: 'Santana de Parnaíba, SP', tag: null, ig: '@blackbox_pqsantana', igUrl: 'https://www.instagram.com/blackbox_pqsantana/' },
+              { title: 'CIDADE SÃO PEDRO', sub: 'Santana de Parnaíba, SP', tag: null, ig: '@blackbox_cidadesaopedro', igUrl: 'https://www.instagram.com/blackbox_cidadesaopedro/' },
             ].map((unit) => (
-              <Link key={unit.title} to="/unidades" className="group">
+              <div key={unit.title} className="group">
                 {unit.tag && (
                   <span className="font-mono text-[7px] tracking-[0.3em] bg-gold/15 text-gold uppercase px-2 py-0.5 mb-2 inline-block">
                     {unit.tag}
                   </span>
                 )}
-                <p className="font-mono text-[10px] tracking-[0.15em] text-white-belt group-hover:text-gold uppercase leading-snug transition-colors">
+                <p className="font-mono text-[10px] tracking-[0.15em] text-white-belt uppercase leading-snug">
                   {unit.title}
                 </p>
-                <p className="font-mono text-[9px] text-mid-gray/50 uppercase mt-1">{unit.sub}</p>
-              </Link>
+                <p className="font-mono text-[9px] text-mid-gray/50 uppercase mt-1 mb-1">{unit.sub}</p>
+                <a
+                  href={unit.igUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-[8px] tracking-[0.15em] text-gold/40 hover:text-gold transition-colors uppercase"
+                >
+                  {unit.ig}
+                </a>
+              </div>
             ))}
           </div>
 

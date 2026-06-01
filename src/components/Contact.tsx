@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { MessageCircle, Instagram } from 'lucide-react';
 
-const WHATSAPP = '5511977962165';
+const UNIT_WHATSAPP: Record<string, string> = {
+  'Portais — Cajamar (Matriz)': '5511977962165',
+  'Parque Santana': '5511960680648',
+  'Cidade São Pedro': '5511975859485',
+};
 
-const unitOptions = [
-  'Portais — Cajamar (Matriz)',
-  'Santana de Parnaíba',
-  'Cidade São Pedro — Cajamar',
-];
+const unitOptions = Object.keys(UNIT_WHATSAPP);
 
 const modalityOptions = [
   'BJJ Adultos Gi',
@@ -33,7 +33,8 @@ const Contact = () => {
       modality && `Modalidade: *${modality}*`,
       `Meu contato: ${phone}`,
     ].filter(Boolean);
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(parts.join('\n'))}`, '_blank');
+    const number = UNIT_WHATSAPP[unit] ?? UNIT_WHATSAPP['Portais — Cajamar (Matriz)'];
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(parts.join('\n'))}`, '_blank');
   };
 
   return (
@@ -64,14 +65,14 @@ const Contact = () => {
 
             <div className="space-y-4 mb-10">
               <a
-                href="https://www.instagram.com/blackboxjiujitsu"
+                href="https://www.instagram.com/blackboxbjj/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-mid-gray hover:text-gold transition-colors group"
               >
                 <Instagram size={14} className="shrink-0" />
                 <span className="font-mono text-[10px] tracking-[0.25em] uppercase group-hover:text-gold transition-colors">
-                  @blackboxjiujitsu
+                  @blackboxbjj
                 </span>
               </a>
             </div>
@@ -80,8 +81,8 @@ const Contact = () => {
             <div className="space-y-4">
               {[
                 { label: 'PORTAIS · MATRIZ', sub: 'Cajamar, SP' },
-                { label: 'SANTANA DE PARNAÍBA', sub: 'Santana de Parnaíba, SP' },
-                { label: 'CIDADE SÃO PEDRO', sub: 'Cajamar, SP' },
+                { label: 'PARQUE SANTANA', sub: 'Santana de Parnaíba, SP' },
+                { label: 'CIDADE SÃO PEDRO', sub: 'Santana de Parnaíba, SP' },
               ].map((loc) => (
                 <div key={loc.label} className="flex items-center gap-3">
                   <div className="w-[3px] h-4 bg-gold/40 shrink-0" />

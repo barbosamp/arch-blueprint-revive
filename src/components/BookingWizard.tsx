@@ -2,11 +2,15 @@ import { useState, useMemo } from 'react';
 import { MessageCircle, ChevronLeft, Check } from 'lucide-react';
 import { scheduleData } from './Schedule';
 
-const WHATSAPP = '5511977962165';
+const UNIT_WHATSAPP: Record<string, string> = {
+  'Portais — Matriz': '5511977962165',
+  'Parque Santana': '5511960680648',
+  'Cidade São Pedro': '5511975859485',
+};
 
 type Profile = 'adulto' | 'kids';
 
-const UNIT_OPTIONS = ['Portais — Matriz', 'Santana de Parnaíba', 'Cidade São Pedro'];
+const UNIT_OPTIONS = Object.keys(UNIT_WHATSAPP);
 const ADULT_MODALITIES = ['BJJ Adultos Gi', 'BJJ No-Gi', 'BJJ Feminino', 'Defesa Pessoal'];
 const WEEK_HEADER = ['SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
 const PT_DAY_SHORT = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
@@ -112,7 +116,8 @@ export default function BookingWizard() {
   };
 
   const handleConfirm = () => {
-    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(buildMessage())}`, '_blank');
+    const number = UNIT_WHATSAPP[unit] ?? UNIT_WHATSAPP['Portais — Matriz'];
+    window.open(`https://wa.me/${number}?text=${encodeURIComponent(buildMessage())}`, '_blank');
   };
 
   const stepLabels = ['Dados Pessoais', 'Unidade e Modalidade', 'Data e Horário', 'Confirmar'];
