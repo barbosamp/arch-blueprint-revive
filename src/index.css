@@ -1,10 +1,16 @@
-/* Oceanwide — fonte display oficial. Carregada via @font-face abaixo quando os arquivos estiverem em public/fonts/ */
+/* Oceanwide — fonte display oficial (Brand Guidelines v2.0) */
 @font-face {
   font-family: 'Oceanwide';
-  src: url('/fonts/Oceanwide-Regular.woff2') format('woff2'),
-       url('/fonts/Oceanwide-Regular.ttf') format('truetype');
-  font-weight: 400;
+  src: url('/fonts/Oceanwide-Semibold.otf') format('opentype');
+  font-weight: 600;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Oceanwide';
+  src: url('/fonts/Oceanwide-SemiboldOblique.otf') format('opentype');
+  font-weight: 600;
+  font-style: oblique;
   font-display: swap;
 }
 

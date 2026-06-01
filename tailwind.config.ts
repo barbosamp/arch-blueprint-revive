@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["'Oceanwide'", "'Bebas Neue'", "sans-serif"],
+        display: ["'Oceanwide'", "'Bebas Neue'", "sans-serif"], // Semibold (600) — usar font-semibold ou default
         mono: ["'DM Sans'", "sans-serif"],
         sans: ["'DM Sans'", "sans-serif"],
       },
