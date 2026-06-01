@@ -7,9 +7,9 @@ type PlanType = 'kids' | 'adulto' | 'familia';
 const MATRICULA = 50;
 
 const KIDS_PLANS = [
-  { variant: '1x', label: 'Kids I', sub: '1× por semana', monthly: 179 },
-  { variant: '3x', label: 'Kids II', sub: 'Até 3× por semana', monthly: 229 },
-  { variant: '5x', label: 'Kids Full', sub: '5× por semana', monthly: 279 },
+  { variant: '1x', label: 'Kids I', sub: '4 a 6 anos · 1× por semana', monthly: 179 },
+  { variant: '3x', label: 'Kids II', sub: '6 a 12 anos · Até 3× por semana', monthly: 229 },
+  { variant: '5x', label: 'Kids Full', sub: '5× por semana · todas as idades', monthly: 279 },
 ];
 
 const ADULTO_PLANS = [

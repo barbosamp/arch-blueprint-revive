@@ -8,13 +8,13 @@ const MATRICULA_URL = '/matricula';
 const planGroups = [
   {
     id: 'kids',
-    tag: 'Kids · 4–12 anos',
+    tag: 'Kids · 4 a 15 anos',
     title: 'PLANO KIDS',
-    description: 'Frequência controlada pelo plano contratado. Turmas por faixa etária com acompanhamento pedagógico.',
+    description: 'Turmas separadas por faixa etária. Kids I (4–6 anos), Kids II (6–12 anos), Kids Geral (+5 anos) e Teens (13–15 anos).',
     variants: [
-      { label: '1× por semana', price: 179, period: '/mês' },
-      { label: 'Até 3× por semana', price: 229, period: '/mês' },
-      { label: '5× por semana', price: 279, period: '/mês' },
+      { label: 'Kids I — 4 a 6 anos', price: 179, period: '/mês' },
+      { label: 'Kids II — 6 a 12 anos', price: 229, period: '/mês' },
+      { label: 'Kids Full — 5× p/ semana', price: 279, period: '/mês' },
     ],
     cta: 'Matricular',
     featured: false,

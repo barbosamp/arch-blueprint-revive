@@ -22,8 +22,8 @@ const Hero = () => {
         </div>
 
         <h1
-          className="font-display leading-none text-white-belt tracking-wider mb-2"
-          style={{ fontSize: 'clamp(64px, 20vw, 200px)' }}
+          className="font-display leading-none text-white-belt tracking-tight sm:tracking-normal md:tracking-wider mb-2"
+          style={{ fontSize: 'clamp(44px, 13vw, 200px)' }}
         >
           BLACKBOX<span className="text-gold">.</span>
         </h1>
