@@ -3,19 +3,230 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      ════════════════════════════════════════════════════════════
+      DOMÍNIO: Substitua  https://blackboxbjj.com.br
+      pela URL real de produção em TODOS os lugares abaixo.
+      ════════════════════════════════════════════════════════════
+    -->
+
+    <!-- SEO primário -->
+    <title>Blackbox Jiu-Jitsu · Academia em Cajamar e Santana de Parnaíba, SP</title>
+    <meta name="description" content="Academia de Jiu-Jitsu em Cajamar e Santana de Parnaíba, SP. 3 unidades, adultos e kids, Gi e No-Gi. Primeira aula experimental gratuita. Venha treinar." />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+    <link rel="canonical" href="https://blackboxbjj.com.br/" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.png" />
-    <title>BLACKBOX. JIU-JITSU ACADEMY | Cajamar e Santana de Parnaíba</title>
-    <meta name="description" content="BLACKBOX. JIU-JITSU ACADEMY — 3 unidades em Cajamar e Santana de Parnaíba. Jiu-Jitsu para adultos e crianças de todos os níveis. Agende uma aula experimental gratuita." />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Preconnect (performance → Core Web Vitals → SEO) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BLACKBOX. JIU-JITSU" />
+    <meta property="og:title" content="Blackbox Jiu-Jitsu · Cajamar e Santana de Parnaíba, SP" />
+    <meta property="og:description" content="3 unidades, adultos e kids, Gi e No-Gi. Primeira aula experimental gratuita." />
+    <meta property="og:image" content="https://blackboxbjj.com.br/og-home.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="BLACKBOX. JIU-JITSU — Academia em Cajamar e Santana de Parnaíba" />
+    <meta property="og:url" content="https://blackboxbjj.com.br/" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@blackboxbjj" />
+    <meta name="twitter:title" content="Blackbox Jiu-Jitsu · Cajamar e Santana de Parnaíba" />
+    <meta name="twitter:description" content="3 unidades em SP. Adultos e kids. Primeira aula grátis." />
+    <meta name="twitter:image" content="https://blackboxbjj.com.br/og-home.jpg" />
+
+    <!-- Geo / Local -->
+    <meta name="geo.region" content="BR-SP" />
+    <meta name="geo.placename" content="Cajamar, São Paulo, Brasil" />
+
+    <!-- Autor -->
     <meta name="author" content="BLACKBOX. JIU-JITSU" />
 
-    <meta property="og:title" content="BLACKBOX. JIU-JITSU ACADEMY" />
-    <meta property="og:description" content="3 unidades em Cajamar e Santana de Parnaíba. Jiu-Jitsu para todos os níveis. Agende sua aula experimental gratuita." />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/logo.png" />
+    <!-- Verificação (preencher após cadastro no Search Console / Bing) -->
+    <!-- <meta name="google-site-verification" content="COLE_SEU_CODIGO_AQUI" /> -->
+    <!-- <meta name="msvalidate.01" content="COLE_SEU_CODIGO_AQUI" /> -->
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@blackboxcajamar" />
-    <meta name="twitter:image" content="/logo.png" />
+    <!-- ════════════════════════════════════════════════════════
+         STRUCTURED DATA — Schema.org
+         · Organization (marca)
+         · 3 × SportsClub / LocalBusiness (unidades)
+         · WebSite com SearchAction
+         ════════════════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://blackboxbjj.com.br/#website",
+          "url": "https://blackboxbjj.com.br",
+          "name": "BLACKBOX. JIU-JITSU",
+          "inLanguage": "pt-BR",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://blackboxbjj.com.br/?s={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://blackboxbjj.com.br/#organization",
+          "name": "BLACKBOX JIU-JITSU",
+          "url": "https://blackboxbjj.com.br",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://blackboxbjj.com.br/logo.png",
+            "width": 512,
+            "height": 512
+          },
+          "sameAs": [
+            "https://www.instagram.com/blackboxbjj/",
+            "https://www.instagram.com/blackboxcajamar/",
+            "https://www.instagram.com/blackbox_pqsantana/",
+            "https://www.instagram.com/blackbox_cidadesaopedro/"
+          ]
+        },
+        {
+          "@type": ["SportsClub", "LocalBusiness"],
+          "@id": "https://blackboxbjj.com.br/#portais",
+          "name": "Blackbox Jiu-Jitsu — Portais (Matriz)",
+          "description": "Academia de Jiu-Jitsu em Cajamar, SP. Unidade Matriz com grade completa: adultos, kids, feminino, No-Gi e defesa pessoal. Primeira aula grátis.",
+          "url": "https://blackboxbjj.com.br/unidades",
+          "telephone": "+55-11-97796-2165",
+          "image": "https://blackboxbjj.com.br/logo.png",
+          "logo": "https://blackboxbjj.com.br/logo.png",
+          "priceRange": "$$",
+          "sport": "Jiu-Jitsu",
+          "hasMap": "https://maps.google.com/?q=R.+Waldemar+Meira,+665,+Cajamar,+SP",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "R. Waldemar Meira, 665 — Portais (Polvilho)",
+            "addressLocality": "Cajamar",
+            "addressRegion": "SP",
+            "postalCode": "07750-000",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -23.353,
+            "longitude": -46.879
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "07:00",
+              "closes": "22:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Saturday"],
+              "opens": "09:00",
+              "closes": "12:00"
+            }
+          ],
+          "sameAs": ["https://www.instagram.com/blackboxcajamar/"],
+          "parentOrganization": { "@id": "https://blackboxbjj.com.br/#organization" }
+        },
+        {
+          "@type": ["SportsClub", "LocalBusiness"],
+          "@id": "https://blackboxbjj.com.br/#parquesantana",
+          "name": "Blackbox Jiu-Jitsu — Parque Santana",
+          "description": "Academia de Jiu-Jitsu em Santana de Parnaíba, SP. Próximo ao Alphaville. Turmas adultos, kids e feminino. Primeira aula grátis.",
+          "url": "https://blackboxbjj.com.br/unidades",
+          "telephone": "+55-11-96068-0648",
+          "image": "https://blackboxbjj.com.br/logo.png",
+          "logo": "https://blackboxbjj.com.br/logo.png",
+          "priceRange": "$$",
+          "sport": "Jiu-Jitsu",
+          "hasMap": "https://maps.google.com/?q=R.+Aquário,+96,+Santana+de+Parnaíba,+SP",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "R. Aquário, 96 — Parque Santana",
+            "addressLocality": "Santana de Parnaíba",
+            "addressRegion": "SP",
+            "postalCode": "06515-085",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -23.445,
+            "longitude": -46.911
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "07:00",
+              "closes": "22:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Saturday"],
+              "opens": "09:00",
+              "closes": "12:00"
+            }
+          ],
+          "sameAs": ["https://www.instagram.com/blackbox_pqsantana/"],
+          "parentOrganization": { "@id": "https://blackboxbjj.com.br/#organization" }
+        },
+        {
+          "@type": ["SportsClub", "LocalBusiness"],
+          "@id": "https://blackboxbjj.com.br/#cidadesaopedro",
+          "name": "Blackbox Jiu-Jitsu — Cidade São Pedro",
+          "description": "Academia de Jiu-Jitsu em Santana de Parnaíba, SP. Turmas adultos, kids e feminino. Open Mat aos sábados. Primeira aula grátis.",
+          "url": "https://blackboxbjj.com.br/unidades",
+          "telephone": "+55-11-97585-9485",
+          "image": "https://blackboxbjj.com.br/logo.png",
+          "logo": "https://blackboxbjj.com.br/logo.png",
+          "priceRange": "$$",
+          "sport": "Jiu-Jitsu",
+          "hasMap": "https://maps.google.com/?q=R.+Tocantins,+227,+Santana+de+Parnaíba,+SP",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "R. Tocantins, 227 — Cidade São Pedro (Gleba A)",
+            "addressLocality": "Santana de Parnaíba",
+            "addressRegion": "SP",
+            "postalCode": "06535-100",
+            "addressCountry": "BR"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -23.444,
+            "longitude": -46.905
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              "opens": "18:00",
+              "closes": "22:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": ["Saturday"],
+              "opens": "10:00",
+              "closes": "12:00"
+            }
+          ],
+          "sameAs": ["https://www.instagram.com/blackbox_cidadesaopedro/"],
+          "parentOrganization": { "@id": "https://blackboxbjj.com.br/#organization" }
+        }
+      ]
+    }
+    </script>
   </head>
 
   <body>
